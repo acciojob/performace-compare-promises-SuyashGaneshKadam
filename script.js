@@ -12,4 +12,22 @@ const apiUrls = [
   "https://jsonplaceholder.typicode.com/todos/10",
 ];
 
+// Promise.all
+const startAll = performance.now();
+await Promise.all(
+  apiUrls.map(url => fetch(url))  
+);
+const endAll = performance.now();
+
+document.getElementById('output-all').textContent = endAll - startAll;
+
+// Promise.any
+const startAny = performance.now();
+await Promise.any(
+  apiUrls.map(url => fetch(url))
+);
+const endAny = performance.now();
+
+document.getElementById('output-any').textContent = endAny - startAny;
+
 // You can write your code here
