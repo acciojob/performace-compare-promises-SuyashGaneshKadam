@@ -14,7 +14,7 @@ const apiUrls = [
 
 // Promise.all
 const startAll = performance.now();
-await Promise.all(
+Promise.all(
   apiUrls.map(url => fetch(url))  
 );
 const endAll = performance.now();
@@ -23,7 +23,7 @@ document.getElementById('output-all').textContent = endAll - startAll;
 
 // Promise.any
 const startAny = performance.now();
-await Promise.any(
+Promise.any(
   apiUrls.map(url => fetch(url))
 );
 const endAny = performance.now();
