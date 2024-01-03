@@ -1,4 +1,3 @@
-// Array of API URLs to fetch data from
 const apiUrls = [
   "https://jsonplaceholder.typicode.com/todos/1",
   "https://jsonplaceholder.typicode.com/todos/2",
@@ -12,22 +11,19 @@ const apiUrls = [
   "https://jsonplaceholder.typicode.com/todos/10",
 ];
 
-// Promise.all
-const startAll = performance.now();
-Promise.all(
-  apiUrls.map(url => fetch(url))  
-);
-const endAll = performance.now();
+async function testPromiseAll() {
+  const start = performance.now();
+  await Promise.all(apiUrls.map(url => fetch(url)));
+  const end = performance.now();
+  document.getElementById("output-all").textContent = end - start;
+}
 
-document.getElementById('output-all').textContent = endAll - startAll;
+async function testPromiseAny() {
+  const start = performance.now();
+  await Promise.any(apiUrls.map(url => fetch(url)));
+  const end = performance.now();
+  document.getElementById("output-any").textContent = end - start; 
+}
 
-// Promise.any
-const startAny = performance.now();
-Promise.any(
-  apiUrls.map(url => fetch(url))
-);
-const endAny = performance.now();
-
-document.getElementById('output-any').textContent = endAny - startAny;
-
-// You can write your code here
+testPromiseAll();
+testPromiseAny();
